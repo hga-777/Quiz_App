@@ -9,6 +9,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
   //ek widget bna rhe hai jisko base class se inherit kr rhe hai thats why 'extend' keyword use hua hai
 // statelesswidget class material.dart file wale ka base class hai
   @override // --> Isliye likha jaat h taki pta chale ki hmlog jaan muj kr inbult class ko overwrite kiye h
@@ -19,8 +20,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         //it gives basic base design of the app
-        appBar: AppBar(title: Text("My First App")),
-        body: Text("This is my default text"),
+        appBar: AppBar(
+          title: const Text("My First App"),
+        ),
+        body: Column(children: [
+          //children is the list of widgets
+          const Text("Questions!!"),
+          ElevatedButton(onPressed: () => debugPrint("Answer 1 chosen"), child: const Text("Answer 1")),
+          ElevatedButton(onPressed: () => debugPrint("Answer 1 chosen"), child: const Text("Answer 2")), //on pressed pr function call hoga yeh rk anaonymous function hai
+          ElevatedButton(onPressed: () => debugPrint("Answer 1 chosen"), child: const Text("Answer 3")),
+          ElevatedButton(onPressed: () => debugPrint("Answer 1 chosen"), child: const Text("Answer 4"))
+        ]),
       ),
     ); //yeh ek widget hai pr isme arguement pass kr rhe hai
     //materialapp ek widget hai jo ki mera material.dart file me rehta hai
