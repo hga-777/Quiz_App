@@ -8,12 +8,34 @@ void main() {
   //this is the function to run the app
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  //it consists of two classes
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
 
+class MyAppState extends State<MyApp> {
+  var questionIndex = 0;
+  void answerQuestion() {
+    setState(() {
+      //yeh ek functoin h jo ki set class me rehta hai and anonymous function leta hai
+      questionIndex = questionIndex + 1;
+    });
+    print(questionIndex);
+  }
+
+  //yeh show krne ke liye ki mera yeh state class statefulwidget se connected hai
   //ek widget bna rhe hai jisko base class se inherit kr rhe hai thats why 'extend' keyword use hua hai
 // statelesswidget class material.dart file wale ka base class hai
   @override // --> Isliye likha jaat h taki pta chale ki hmlog jaan muj kr inbult class ko overwrite kiye h
   Widget build(BuildContext context) {
+    var questions = [
+      "Whats ur favourite Colour?",
+      "Whats ur favourite Animal?"
+    ];
     //class ke andr waale function ko method bolte hai aur yeh ek method hai
 //yeha pr context ek object hai and BuildContext ek class hai material.dart file ka
 // and build ek function hai jo ki ek widget return krta hai
@@ -25,11 +47,17 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(children: [
           //children is the list of widgets
-          const Text("Questions!!"),
-          ElevatedButton(onPressed: () => debugPrint("Answer 1 chosen"), child: const Text("Answer 1")),
-          ElevatedButton(onPressed: () => debugPrint("Answer 1 chosen"), child: const Text("Answer 2")), //on pressed pr function call hoga yeh rk anaonymous function hai
-          ElevatedButton(onPressed: () => debugPrint("Answer 1 chosen"), child: const Text("Answer 3")),
-          ElevatedButton(onPressed: () => debugPrint("Answer 1 chosen"), child: const Text("Answer 4"))
+          Text(questions[questionIndex]),
+          ElevatedButton(
+              onPressed: answerQuestion, child: const Text("Answer 1")),
+          ElevatedButton(
+              onPressed: answerQuestion,
+              child: const Text(
+                  "Answer 2")), //on pressed pr function call hoga yeh rk anaonymous function hai
+          ElevatedButton(
+              onPressed: answerQuestion, child: const Text("Answer 3")),
+          ElevatedButton(
+              onPressed: answerQuestion, child: const Text("Answer 4"))
         ]),
       ),
     ); //yeh ek widget hai pr isme arguement pass kr rhe hai
