@@ -33,9 +33,11 @@ class _MyAppState extends State<MyApp> {
 // statelesswidget class material.dart file wale ka base class hai
   @override // --> Isliye likha jaat h taki pta chale ki hmlog jaan muj kr inbult class ko overwrite kiye h
   Widget build(BuildContext context) {
-    var questions = [
-      "Whats ur favourite Colour?",
-      "Whats ur favourite Animal?"
+    var questions = [  //now yeha pr map ka concept use karenge jisme first element key hoga and next element value
+     {'questionText': 'What\'s your favourite topic?' , 'answer' : ['Memes','Roast','Mukbang','Vlogs']},
+     {'questionText': 'What\'s your favourite genes?' , 'answer' : ['Russian','European','American','Australian']},
+     {'questionText': 'What\'s your favourite snack?' , 'answer' : ['Kurkure','Mad Angles','Lays','Uncle Chips']},
+     {'questionText': 'What\'s your favourite tv show?' , 'answer' : ['TMKOC','Doraemon','Sinchan','Anupama']},
     ];
     //class ke andr waale function ko method bolte hai aur yeh ek method hai
 //yeha pr context ek object hai and BuildContext ek class hai material.dart file ka
@@ -48,11 +50,12 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(children: [
           //children is the list of widgets
-          Question(questions[_questionIndex]),  
-          Answer(_answerQuestion),
-          Answer(_answerQuestion), 
-          Answer(_answerQuestion),
-          Answer(_answerQuestion),
+          Question(
+            questions[_questionIndex]['questionText'].toString(),
+            ),  
+           ...(questions[_questionIndex]['answer'] as List<String>).map((answer){ //.map method is used jiska kaam hai list ke hr ek element ko change krke koi aur cheez bna dena
+            return Answer(_answerQuestion,answer);
+           }).toList()  //.toList krne ka sense ki iska o/p mera list me return ho
         ]),
       ),
     ); //yeh ek widget hai pr isme arguement pass kr rhe hai
