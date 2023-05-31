@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import './Question.dart';  
 // 'import krne ka mtlb kisi alg file se koi functionality ko copy krna
 // 'is case me hmlog flutter package se material file ko import kiye hai
 void main() {
@@ -13,18 +13,18 @@ class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();   //underscore lgane se private bn jaega
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
-  void answerQuestion() {
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+  void _answerQuestion() {
     setState(() {
       //yeh ek functoin h jo ki set class me rehta hai and anonymous function leta hai
-      questionIndex = questionIndex + 1;
+      _questionIndex = _questionIndex + 1;
     });
-    print(questionIndex);
+    print(_questionIndex);
   }
 
   //yeh show krne ke liye ki mera yeh state class statefulwidget se connected hai
@@ -47,17 +47,17 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(children: [
           //children is the list of widgets
-          Text(questions[questionIndex]),
+          Question(questions[_questionIndex]),  
           ElevatedButton(
-              onPressed: answerQuestion, child: const Text("Answer 1")),
+              onPressed: _answerQuestion, child: const Text("Answer 1")),
           ElevatedButton(
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
               child: const Text(
                   "Answer 2")), //on pressed pr function call hoga yeh rk anaonymous function hai
           ElevatedButton(
-              onPressed: answerQuestion, child: const Text("Answer 3")),
+              onPressed: _answerQuestion, child: const Text("Answer 3")),
           ElevatedButton(
-              onPressed: answerQuestion, child: const Text("Answer 4"))
+              onPressed: _answerQuestion, child: const Text("Answer 4"))
         ]),
       ),
     ); //yeh ek widget hai pr isme arguement pass kr rhe hai
