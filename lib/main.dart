@@ -1,3 +1,4 @@
+import 'package:first_ap/answer.dart';
 import 'package:flutter/material.dart';
 import './Question.dart';  
 // 'import krne ka mtlb kisi alg file se koi functionality ko copy krna
@@ -48,16 +49,10 @@ class _MyAppState extends State<MyApp> {
         body: Column(children: [
           //children is the list of widgets
           Question(questions[_questionIndex]),  
-          ElevatedButton(
-              onPressed: _answerQuestion, child: const Text("Answer 1")),
-          ElevatedButton(
-              onPressed: _answerQuestion,
-              child: const Text(
-                  "Answer 2")), //on pressed pr function call hoga yeh rk anaonymous function hai
-          ElevatedButton(
-              onPressed: _answerQuestion, child: const Text("Answer 3")),
-          ElevatedButton(
-              onPressed: _answerQuestion, child: const Text("Answer 4"))
+          Answer(_answerQuestion),
+          Answer(_answerQuestion), 
+          Answer(_answerQuestion),
+          Answer(_answerQuestion),
         ]),
       ),
     ); //yeh ek widget hai pr isme arguement pass kr rhe hai
