@@ -22,27 +22,49 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var _questionIndex = 0;
   final _questions = const [
     //now yeha pr map ka concept use karenge jisme first element key hoga and next element value
     {
       'questionText': 'What\'s your favourite topic?',
-      'answer': ['Memes', 'Roast', 'Mukbang', 'Vlogs']
+      'answer': [
+        {'text': 'Memes', 'score': 20},
+        {'text': 'Roast', 'score': 15},
+        {'text': 'Mukbang', 'score': 5},
+        {'text': 'Vlogs', 'score': 2}
+      ]
     },
     {
       'questionText': 'What\'s your favourite genes?',
-      'answer': ['Russian', 'European', 'American', 'Australian']
+      'answer': [
+        {'text': 'Russian', 'score': 20},
+        {'text': 'American', 'score': 15},
+        {'text': 'European', 'score': 15},
+        {'text': 'Asian', 'score': 2}
+      ]
     },
     {
       'questionText': 'What\'s your favourite snack?',
-      'answer': ['Kurkure', 'Mad Angles', 'Lays', 'Uncle Chips']
+      'answer': [
+        {'text': 'Samosa', 'score': 20},
+        {'text': 'Chole Bhature', 'score': 20},
+        {'text': 'Momos', 'score': 5},
+        {'text': 'Rolls', 'score': 15}
+      ]
     },
     {
       'questionText': 'What\'s your favourite tv show?',
-      'answer': ['TMKOC', 'Doraemon', 'Sinchan', 'Anupama']
+      'answer': [
+        {'text': 'TMKOC', 'score': 18},
+        {'text': 'Doraemon', 'score': 15},
+        {'text': 'CID', 'score': 5},
+        {'text': 'Anupama', 'score': -2}
+      ]
     },
   ];
-  void _answerQuestion() {
+  var _totalScore = 0;
+  var _questionIndex = 0;
+  void _answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       //yeh ek functoin h jo ki set class me rehta hai and anonymous function leta hai
       _questionIndex = _questionIndex + 1;
@@ -76,7 +98,7 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(),
+            : Result(_totalScore),
       ),
     ); //yeh ek widget hai pr isme arguement pass kr rhe hai
     //materialapp ek widget hai jo ki mera material.dart file me rehta hai
