@@ -1,6 +1,8 @@
 import 'package:first_ap/answer.dart';
+import 'package:first_ap/result.dart';
 import 'package:flutter/material.dart';
-import './Question.dart';
+import './quiz.dart';
+import './result.dart';
 
 // 'import krne ka mtlb kisi alg file se koi functionality ko copy krna
 // 'is case me hmlog flutter package se material file ko import kiye hai
@@ -21,7 +23,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-  final questions = const [
+  final _questions = const [
     //now yeha pr map ka concept use karenge jisme first element key hoga and next element value
     {
       'questionText': 'What\'s your favourite topic?',
@@ -46,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
-    if (_questionIndex < questions.length) {
+    if (_questionIndex < _questions.length) {
       debugPrint('We have more questions!!');
     } else {
       debugPrint('we are done!!!');
@@ -68,22 +70,13 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text("My First App"),
         ),
-        body: (_questionIndex < questions.length)
-            ? Column(children: [
-                //children is the list of widgets
-                Question(
-                  questions[_questionIndex]['questionText'].toString(),
-                ),
-                ...(questions[_questionIndex]['answer'] as List<String>)
-                    .map((answer) {
-                  //.map method is used jiska kaam hai list ke hr ek element ko change krke koi aur cheez bna dena
-                  return Answer(_answerQuestion, answer);
-                }).toList() //.toList krne ka sense ki iska o/p mera list me return ho
-                // spread operator (...) ka kaam hai list ke values ko ek ek krke batna
-              ])
-            : const Center(    //agr index question se zyzda ho gya toh yeh print hoga.
-                child: Text('Chl beta ab nikal!!'),
-              ),
+        body: (_questionIndex < _questions.length)
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
+                questions: _questions,
+              )
+            : Result(),
       ),
     ); //yeh ek widget hai pr isme arguement pass kr rhe hai
     //materialapp ek widget hai jo ki mera material.dart file me rehta hai
