@@ -1,3 +1,4 @@
+import 'package:first_ap/Question.dart';
 import 'package:first_ap/answer.dart';
 import 'package:first_ap/result.dart';
 import 'package:flutter/material.dart';
@@ -63,6 +64,14 @@ class _MyAppState extends State<MyApp> {
   ];
   var _totalScore = 0;
   var _questionIndex = 0;
+  
+  void _restart() {
+    setState(() {
+      _totalScore = 0;
+      _questionIndex = 0;
+    });
+  }
+
   void _answerQuestion(int score) {
     _totalScore += score;
     setState(() {
@@ -98,7 +107,7 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(_totalScore),
+            : Result(_totalScore, _restart),
       ),
     ); //yeh ek widget hai pr isme arguement pass kr rhe hai
     //materialapp ek widget hai jo ki mera material.dart file me rehta hai
