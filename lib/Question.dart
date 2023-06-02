@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Question extends StatelessWidget {
-  final String questionText;
+  final String questionText;  //final means constant at runtime
 
   Question(this.questionText);
 
